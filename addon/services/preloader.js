@@ -28,6 +28,20 @@ export default Ember.Object.extend({
 
     return div && div.addClass && div.addClass(className);
   },
+  
+  removeLoadedClass(className) {
+    let loadedClass = this.get('options.loadedClass');
+
+    if ('undefined' === typeof className && loadedClass === false) {
+      return;
+    } else {
+      className = ('string' === typeof className) ? className : (loadedClass || '');
+    }
+
+    let div = this.get('els').filter('div');
+
+    return div && div.removeClass && div.removeClass(className);
+  },
 
   removePreloader(delay) {
     let removeDelay = this.get('options.removeDelay');
